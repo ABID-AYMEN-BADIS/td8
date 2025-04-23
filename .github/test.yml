@@ -1,0 +1,32 @@
+name: Test Formulaire
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Installer Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Installer TestCafe
+      run: npm install -g testcafe
+
+    - name: Installer PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Lancer serveur PHP
+      run: php -S localhost:8000 &
+
+    - name: Attendre que le serveur soit prêt
+      run: sleep 3
+
+    - name: Lancer les tests TestCafe
+      run: testcafe chromium form.test.js

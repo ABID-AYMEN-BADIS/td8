@@ -1,0 +1,13 @@
+# Fichiers temporaires
+*.log
+*.tmp
+*.swp
+
+# Dossiers système
+.DS_Store
+node_modules/
+vendor/
+
+# Fichiers de configuration locaux
+.env
+*.local
